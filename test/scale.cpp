@@ -7,15 +7,15 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
-#include "Cube.h"
-#include "KeyRotBehavior.h"
+#include "Camera.hpp"
+#include "Cube.hpp"
+#include "KeyRotBehavior.hpp"
 #include "Keyboard.h"
-#include "Cylinder.h"
-#include "BigSphere.h"
+#include "Cylinder.hpp"
+#include "BigSphere.hpp"
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	cerr << "Simple emilia test." << endl;
 
 	// Create the engine.
@@ -59,8 +59,8 @@ int main(int argc, char *argv[]) {
   float x=0, y=0, z=0;
   float dx=-1, dy=-1, dz=-1;
   engine->resetTick();
-	while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
-    if (engine->nextTickFPS(50)) {
+	while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
+    if (engine->nextTickFPS(50)){
       if (x > 2) dx=-0.012;
       if (y > 2) dy=-0.021;
       if (z > 2) dz=-0.027;
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
       groupSphere1->setScale(x, y, z);
       //cerr << "x " << x << " y " << y << " z " << z << endl;
       engine->tick(); 
-    } else {
+    }else{
 			engine->render();
 			engine->swap();
 		}
@@ -85,6 +85,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

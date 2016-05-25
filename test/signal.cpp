@@ -7,32 +7,32 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
-#include "Cube.h"
+#include "Camera.hpp"
+#include "Cube.hpp"
 #include "Keyboard.h"
 #include "Behavior.h"
 #include "Shape3D.h"
-#include "StateMachine.h"
+
 
 /** A behavior class that implements a onSignal method */
 class SignalTest : public Behavior {
 public:
-  void StdOnSignal();
-  void StdOnCollision() {};
-  void StdOnTick() {};
+  void onSignal(int em_signal, Group* em_group);
+  void onCollision(const Vertex3D& em_vtx, const Vertex3D& em_vtxOwn, Group* em_group){};
+  void onTick(){};
 };
 
-void SignalTest::StdOnSignal() {
-  OnSignal(1) {
+void SignalTest::onSignal(int em_signal, Group* em_group){
+  if(em_signal == 1){
     cerr << "Got signal 1" << endl;
-    if (this->getParent() != NULL) {
+    if (this->getParent() != NULL){
       Shape3D* shape = this->getParent()->getShape3D(0);
       if (shape != NULL) shape->setColor(1,1,1,1);
     }
   }
-  OnSignal(2) {
+  if(em_signal == 2){
     cerr << "Got signal 2" << endl;
-    if (this->getParent() != NULL) {
+    if (this->getParent() != NULL){
       Shape3D* shape = this->getParent()->getShape3D(0);
       if (shape != NULL) shape->setColor(1,0,1,1);
     }
@@ -40,7 +40,7 @@ void SignalTest::StdOnSignal() {
 }
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
   cerr << "Simple emilia test." << endl;
   
   // Create the engine.
@@ -65,18 +65,18 @@ int main(int argc, char *argv[]) {
   groupCube->setBehavior(beh);
 		
   engine->resetTick();
-  while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
-    if (Keyboard::isKeyDown(SDLK_1)) {
+  while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
+    if (Keyboard::isKeyDown(SDLK_1)){
       // multicast a signal
-      SendSignal(1, 0, engine, NULL);
+      SignalSender::getInstance()->addSignal(1, 0, engine, NULL);
     }
-    if (Keyboard::isKeyDown(SDLK_2)) {
+    if (Keyboard::isKeyDown(SDLK_2)){
       // multicast a signal with delay
-      SendSignal(2, 50, engine, NULL);
+      SignalSender::getInstance()->addSignal(2, 50, engine, NULL);
     }
-    if (engine->nextTickFPS(50)) {
+    if (engine->nextTickFPS(50)){
       engine->tick();
-    } else {
+    }else{
       engine->render();
       engine->swap();
     }
@@ -85,7 +85,5 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+
 

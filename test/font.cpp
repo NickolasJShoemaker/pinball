@@ -8,17 +8,17 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
-#include "Cube.h"
-#include "KeyRotBehavior.h"
+#include "Camera.hpp"
+#include "Cube.hpp"
+#include "KeyRotBehavior.hpp"
 #include "Keyboard.h"
 #include "EmFont.h"
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	cerr << "Font test." << endl;
 
-	if (argc < 2) {
+	if (argc < 2){
 		cerr << "Usage: font <fontimage>" << endl;
 		return 0;
 	}
@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
 	EmFont* font = EmFont::getInstance();
 	font->loadFont(argv[1]);
 
-	while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
+	while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
 		engine->tick();
 		engine->render();
 		font->printRow("the brown fox jumped over",  0);
@@ -62,6 +62,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

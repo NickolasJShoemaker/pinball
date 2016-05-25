@@ -17,6 +17,8 @@
 #include "Table.h"
 #include "Config.h"
 
+#include "SignalSender.h"
+
 #define MISSION_TEXT_TIMEOUT 6000
 #define INFO_TEXT_TIME 600
 

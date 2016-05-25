@@ -6,27 +6,27 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
-#include "Cube.h"
-#include "Cone.h"
+#include "Camera.hpp"
+#include "Cube.hpp"
+#include "Cone.hpp"
 #include "Keyboard.h"
-#include "KeyBehavior.h"
-#include "KeyRotBehavior.h"
+#include "KeyBehavior.hpp"
+#include "KeyRotBehavior.hpp"
 #include "Shape3D.h"
 #include "Polygon.h"
 #include "CollisionBounds.h"
 #include "EMath.h"
 #include "CollisionVisitor.h"
-#include "Cube.h"
+#include "Cube.hpp"
 
 /** A Triangle */
 class TriClass : public Shape3D {
 public:
   TriClass();
-  ~TriClass() {};
+  ~TriClass(){};
 };
 
-TriClass::TriClass() {
+TriClass::TriClass(){
   this->add(1, -1, 0, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f);
   this->add(-1, -1, 0, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f);
   this->add(0, 1, 0, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f);
@@ -43,7 +43,7 @@ TriClass::TriClass() {
 }
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
   cerr << "Simple emilia test." << endl;
 
   // Create the engine.
@@ -72,14 +72,14 @@ int main(int argc, char *argv[]) {
   Vertex3D vtx = {0.0f, 0.0f, 0.0f};
   Vertex3D vtxDist;
   engine->resetTick();
-  while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
-    if (engine->nextTickFPS(10)) {
+  while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
+    if (engine->nextTickFPS(10)){
       engine->tick();
       float sqrdist = CollisionVisitor::getInstance()->
 	vtxPolySqrDist(vtx, tri->getPolygon(0), vtxDist);
       cerr << EMath::emSqrt(sqrdist) <<" : "<< 
 	vtxDist.x <<" "<< vtxDist.y <<" "<< vtxDist.z << endl; 
-    } else {
+    }else{
       engine->render();
       engine->swap();
     }
@@ -89,6 +89,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

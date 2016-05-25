@@ -18,7 +18,7 @@
 
 #include "Table.h"
 #include "Score.h"
-#include "BallGroup.h"
+#include "BallGroup.hpp"
 #include "Shape3D.h"
 
 /*

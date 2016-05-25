@@ -6,18 +6,18 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
+#include "Camera.hpp"
 #include "BillBoard.h"
-#include "KeyBehavior.h"
+#include "KeyBehavior.hpp"
 #include "Keyboard.h"
 #include "TextureUtil.h"
-#include "Cube.h"
+#include "Cube.hpp"
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
   cerr << "BillBoard test." << endl;
 
-  if (argc < 2) {
+  if (argc < 2){
     cerr << "Usage: billboard <image-file>" << endl;
     return 0;
   }
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 	KeyBehavior* keyBeh = new KeyBehavior();
 	groupBB->setBehavior(keyBeh);
 	
-	while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
+	while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
 	  engine->tick();
 	  engine->render();
 	  engine->swap();
@@ -64,6 +64,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

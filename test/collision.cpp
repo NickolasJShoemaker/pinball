@@ -7,15 +7,15 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
-#include "Cube.h"
-#include "Cone.h"
-#include "BigSphere.h"
+#include "Camera.hpp"
+#include "Cube.hpp"
+#include "Cone.hpp"
+#include "BigSphere.hpp"
 #include "Keyboard.h"
 #include "Behavior.h"
 #include "Shape3D.h"
-#include "StateMachine.h"
-#include "StdAnimation.h"
+
+#include "StdAnimation.hpp"
 #include "CollisionBounds.h"
 
 #define EM_ALT 0
@@ -61,23 +61,23 @@ Defines: EM_DEBUG EM_USE_ALLEGRO
 class CollisionTest : public StdAnimation {
 public:
 #if EM_ALT
-	CollisionTest() : StdAnimation(250, EM_TRANSLATION) {};
+	CollisionTest() : StdAnimation(250, EM_TRANSLATION){};
 #else
-	CollisionTest() : StdAnimation(50, EM_TRANSLATION) {};
+	CollisionTest() : StdAnimation(50, EM_TRANSLATION){};
 #endif
-	~CollisionTest() {};
-	void StdOnCollision();
+	~CollisionTest(){};
+	void onCollision(const Vertex3D& em_vtx, const Vertex3D& em_vtxOwn, Group* em_group);
 };
 
-void CollisionTest::StdOnCollision() {
-	EmAssert(this->getParent() != NULL, "CollisionTest::StdOnCollision() parent null");
-	for (int a=0; a<this->getParent()->getShape3DSize(); a++) {
+void CollisionTest::onCollision(const Vertex3D& em_vtx, const Vertex3D& em_vtxOwn, Group* em_group){
+	EmAssert(this->getParent() != NULL, "CollisionTest::onCollision(const Vertex3D& em_vtx, const Vertex3D& em_vtxOwn, Group* em_group) parent null");
+	for (int a=0; a<this->getParent()->getShape3DSize(); a++){
 		this->getParent()->getShape3D(a)->setColor(1,0,0,1);
 	}
 }
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	cerr << "Simple emilia test." << endl;
 
 	// Create the engine.
@@ -93,9 +93,9 @@ int main(int argc, char *argv[]) {
 	engine->setEngineCamera(groupCamera);
 
 	vector<Shape3D*> vShape3D;
-	for (int a=0; a<16; a++) {
+	for (int a=0; a<16; a++){
 		Shape3D * shape;
-		switch (a%3) {
+		switch (a%3){
 		case 0: shape = new BigSphere(1.0, 2, 1.0, 1.0, 1.0, 1.0); break;
 		case 1: shape = new Cone(2.0, 16, 1.0, 1.0, 1.0, 1.0); break;
 		default: shape = new Cube(2.0, 1.0, 1.0, 1.0, 1.0);
@@ -108,9 +108,9 @@ int main(int argc, char *argv[]) {
 		// Add the collisionbounds
 #if EM_FAST_SPHERE
 		CollisionBounds* cb;
-		if (a%3 == 0) {
+		if (a%3 == 0){
 			cb = new CollisionBounds(1.0f/EM_SQRT_3);
-		} else {
+		}else{
 			cb = new CollisionBounds(shape->getCollisionSize());
 			cb->setShape3D(shape, 1);
 		}
@@ -139,10 +139,10 @@ int main(int argc, char *argv[]) {
 		engine->add(groupShape);
 	}
 		
-	while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
+	while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
 		vector<Shape3D*>::iterator iter = vShape3D.begin();
 		vector<Shape3D*>::iterator end = vShape3D.end();
-		for (; iter != end; iter++) {
+		for (; iter != end; iter++){
 			(*iter)->setColor(0, 0, 1, 1);
 		}
 		engine->tick();
@@ -164,6 +164,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

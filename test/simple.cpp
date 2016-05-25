@@ -7,14 +7,14 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
-#include "Cube.h"
-#include "KeyRotBehavior.h"
+#include "Camera.hpp"
+#include "Cube.hpp"
+#include "KeyRotBehavior.hpp"
 #include "Keyboard.h"
-//#include "Cylinder.h"
+//#include "Cylinder.hpp"
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	cerr << "Simple emilia test." << endl;
 
 	// Create the engine.
@@ -40,9 +40,9 @@ int main(int argc, char *argv[]) {
 	groupCube->setBehavior(keyRBeh);
 		
 	bool render = true;
-	while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
+	while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
 		engine->tick();
-		if (render) {
+		if (render){
 			engine->render();
 			engine->swap();
 		}
@@ -52,6 +52,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

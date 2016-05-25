@@ -15,7 +15,7 @@
 #endif
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 #if EM_UNIT_TEST
   CppUnit::TextUi::TestRunner runner;
   runner.addTest(EMathTest::suite());
@@ -30,6 +30,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

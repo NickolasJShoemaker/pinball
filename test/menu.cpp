@@ -7,9 +7,9 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
-#include "Cube.h"
-#include "KeyRotBehavior.h"
+#include "Camera.hpp"
+#include "Cube.hpp"
+#include "KeyRotBehavior.hpp"
 #include "Keyboard.h"
 #include "Menu.h"
 #include "EmFont.h"
@@ -19,12 +19,12 @@
 
 MenuChoose* menuchoose = NULL;
 
-int fctApply(void) {
+int fctApply(void){
   cerr << menuchoose->getCurrent() << endl;
   return 0;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
   cerr << "Simple emilia test." << endl;
 
   // Create the engine.
@@ -50,12 +50,7 @@ int main(int argc, char *argv[]) {
 	
   // Load a font
   EmFont* font = EmFont::getInstance();
-#if EM_USE_SDL
   font->loadFont("data/font_34.png");
-#endif
-#if EM_USE_ALLEGRO
-  font->loadFont("data/font_35.pcx");
-#endif
 	
   // Create the menu
   MenuSub* menumain = new MenuSub("main", engine);
@@ -89,14 +84,14 @@ int main(int argc, char *argv[]) {
 	
   bool done = false;
   engine->resetTick();
-  while (!Keyboard::isKeyDown(SDLK_SPACE) && !done) {
-    if (engine->nextTickFPS(50)) {
+  while (!Keyboard::isKeyDown(SDLK_SPACE) && !done){
+    if (engine->nextTickFPS(50)){
       engine->tick();
-    } else {
+    }else{
       engine->render();
       engine->swap();
     }
-    if (Keyboard::isKeyDown(SDLK_ESCAPE)) {
+    if (Keyboard::isKeyDown(SDLK_ESCAPE)){
       if (menumain->perform() == EM_MENU_EXIT) done = true;
     }
   }
@@ -104,6 +99,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

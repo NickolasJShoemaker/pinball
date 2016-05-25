@@ -9,7 +9,7 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
+#include "Camera.hpp"
 #include "Keyboard.h"
 #include "OpenGLVisitor.h"
 
@@ -54,7 +54,7 @@ Color cbuf[] = {
 };
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
   cerr << "Vertex array test, press space then esc to quit." << endl;
 
 #if EM_USE_SDL
@@ -75,16 +75,16 @@ int main(int argc, char *argv[]) {
   glEnableClientState(GL_COLOR_ARRAY);
   glVertexPointer(3, GL_FLOAT, 0, vbuf);
   glColorPointer(4, GL_FLOAT, 0, cbuf);
-  while (!Keyboard::isKeyDown(SDLK_SPACE)) {
+  while (!Keyboard::isKeyDown(SDLK_SPACE)){
     //engine->clearScreen();
     engine->render();
     Keyboard::poll();
     glLoadIdentity();
     glTranslatef(-6.0f, -6.0f, -26.0f);
-    for (int a=0; a<5; ++a) {
-      for (int b=0; b<5; ++b) {
-	for (int c=0; c<5; ++c) {
-	  for (int d=0; d<PSIZE; ++d) {
+    for (int a=0; a<5; ++a){
+      for (int b=0; b<5; ++b){
+	for (int c=0; c<5; ++c){
+	  for (int d=0; d<PSIZE; ++d){
 	    glDrawElements(GL_POLYGON, 4, GL_UNSIGNED_INT, ibuf[d]);
 	  }
 	  glTranslatef(3.0f, 0.0f, 0.0f);
@@ -100,18 +100,18 @@ int main(int argc, char *argv[]) {
   glDisableClientState(GL_VERTEX_ARRAY);
   glDisableClientState(GL_COLOR_ARRAY);
   cerr << "separate calls" << endl;
-  while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {		
+  while (!Keyboard::isKeyDown(SDLK_ESCAPE)){		
     //engine->clearScreen();
     engine->render();
     Keyboard::poll();
     glLoadIdentity();
     glTranslatef(-6.0f, -6.0f, -26.0f);
-    for (int a=0; a<5; ++a) {
-      for (int b=0; b<5; ++b) {
-	for (int c=0; c<5; ++c) {
-	  for (int d=0; d<PSIZE; ++d) {
+    for (int a=0; a<5; ++a){
+      for (int b=0; b<5; ++b){
+	for (int c=0; c<5; ++c){
+	  for (int d=0; d<PSIZE; ++d){
 	    glBegin(GL_POLYGON);
-	    for (int e=0; e<4; ++e) {
+	    for (int e=0; e<4; ++e){
 	      glColor4f(cbuf[ibuf[d][e]].r, cbuf[ibuf[d][e]].g, 
 			cbuf[ibuf[d][e]].b, cbuf[ibuf[d][e]].a);
 	      glVertex3f(vbuf[ibuf[d][e]].x, vbuf[ibuf[d][e]].y, vbuf[ibuf[d][e]].z);
@@ -133,6 +133,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

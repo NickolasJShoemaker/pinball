@@ -68,7 +68,7 @@ MACRO_BBBB(a_, b_) \
 MACRO_BBBB(a_, b_)
  
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	cerr << "Math profiling." << endl;
 
 	gBias.i = (23+127) << 23;
@@ -84,17 +84,17 @@ int main(int argc, char *argv[]) {
 	float cc = 0.0f;
 	int dd;
 
-	for (int a=0; a<500; a++) {
+	for (int a=0; a<500; a++){
 		gettimeofday(&tv, &tz);
 		long msec = tv.tv_usec;
-		for (int b=0; b<100000; b++) {
+		for (int b=0; b<100000; b++){
 			MACRO_BBBBB(cc, bb);
 		}
 		dd += bb;
 		gettimeofday(&tv, &tz);
 		bbb += (tv.tv_usec - msec);
 		msec = tv.tv_usec;
-		for (int b=0; b<100000; b++) {
+		for (int b=0; b<100000; b++){
 			MACRO_AAAAA(aa, bb);
 		}
 		dd += bb;
@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
 		//cerr << msec << endl;
 	}
 
-	//for (int a=0; a<16; a++) {
+	//for (int a=0; a<16; a++){
 	cerr << "slow " << bbb << endl;
 	cerr << "fast " << aaa << endl; 
 	//}
@@ -112,13 +112,11 @@ int main(int argc, char *argv[]) {
 }
 
 #else
-int main() {
+int main(){
 	cerr << "not using fast float2int" << endl;
 	return 0;
 }
 #endif
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+
 

@@ -12,13 +12,13 @@
 
 class MyBehavior : public Behavior {
  public:
-	MyBehavior() : Behavior() {};
-	~MyBehavior() {};
-	void onTick() {};
-	void onCollision(const Vertex3D & vtxWall, const Vertex3D & vtxOwn, Group * g) {};
-	void onSignal(int signal, Group * sender) {};
+	MyBehavior() : Behavior(){};
+	~MyBehavior(){};
+	void onTick(){};
+	void onCollision(const Vertex3D & vtxWall, const Vertex3D & vtxOwn, Group * g){};
+	void onSignal(int signal, Group * sender){};
 };
 
-extern "C"  void * new_object_fct(void) {
+extern "C"  void * new_object_fct(void){
 	return new MyBehavior();
 }

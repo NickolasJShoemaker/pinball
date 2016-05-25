@@ -6,19 +6,19 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
+#include "Camera.hpp"
 #include "BillBoard.h"
-#include "KeyBehavior.h"
+#include "KeyBehavior.hpp"
 #include "Keyboard.h"
 #include "TextureUtil.h"
-#include "Cube.h"
-#include "StdAnimation.h"
+#include "Cube.hpp"
+#include "StdAnimation.hpp"
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	cerr << "Explode test." << endl;
 
-	if (argc < 2) {
+	if (argc < 2){
 		cerr << "Usage: explode <image-file>" << endl;
 		return 0;
 	}
@@ -72,10 +72,10 @@ int main(int argc, char *argv[]) {
 	groupCube->setBehavior(keyBeh);
 		
 	engine->resetTick();
-	while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
-	  if (engine->nextTickFPS(50)) {
+	while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
+	  if (engine->nextTickFPS(50)){
 	    engine->tick();
-	  } else {
+	  }else{
 	    engine->render();
 	    engine->swap();
 	  }
@@ -84,6 +84,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+

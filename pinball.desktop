@@ -1,9 +1,0 @@
-[Desktop Entry]
-Categories=Game;Simulation;ArcadeGame;
-Name=Emilia Pinball
-Comment=3D pinball game
-Exec=pinball
-Icon=pinball
-Terminal=false
-Type=Application
-Comment[fr]=Jeu de flipper 3D

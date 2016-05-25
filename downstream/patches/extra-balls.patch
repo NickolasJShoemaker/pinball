@@ -2,10 +2,10 @@
 +++ pinball-0.3.1/data/tux/ModuleTux.cpp	2004-07-20 19:32:13.000000000 -0700
 @@ -183,6 +183,7 @@
        case 0 :
- 	if (table->isBallDead(0) ) {
- 	  SendSignal( m_sigGameStart, 0, this->getParent(), NULL );
-+     SendSignal(m_sigBootAll, 0, this->getParent(), NULL); 
- 	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
+ 	if (table->isBallDead(0) ){
+ 	  SignalSender::getInstance()->addSignal( m_sigGameStart, 0, this->getParent(), NULL );
++     SignalSender::getInstance()->addSignal(m_sigBootAll, 0, this->getParent(), NULL); 
+ 	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
  	  table->activateBall(0, 19.5f, 0.0f, 30.0f);	
  	  //score->clearText();
 @@ -202,6 +203,62 @@
@@ -13,118 +13,118 @@
  	  break;
  	}
 +      case 3 :
-+	if (table->isBallDead(3)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(3)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(3, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
 +      case 4 :
-+	if (table->isBallDead(4)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(4)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(4, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
 +      case 5 :
-+	if (table->isBallDead(5)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(5)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(5, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
 +      case 6 :
-+	if (table->isBallDead(6)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(6)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(6, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
 +      case 7 :
-+	if (table->isBallDead(7)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(7)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(7, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
 +      case 8 :
-+	if (table->isBallDead(8)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(8)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(8, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
 +      case 9 :
-+	if (table->isBallDead(9)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(9)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(9, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
 +      case 10 :
-+	if (table->isBallDead(10)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(10)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(10, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
- 	if (table->isBallDead(0) ) {
- 	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
+ 	if (table->isBallDead(0) ){
+ 	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
  	  table->activateBall(0, 19.5f, 0.0f, 30.0f);	
 @@ -214,6 +271,60 @@
  	  //score->clearText();
  	  break;
  	}
-+	if (table->isBallDead(2)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(2)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(2, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
-+	if (table->isBallDead(3)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(3)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(3, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
-+	if (table->isBallDead(4)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(4)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(4, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
-+	if (table->isBallDead(5)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(5)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(5, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
-+	if (table->isBallDead(6)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(6)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(6, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
-+	if (table->isBallDead(7)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(7)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(7, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
-+	if (table->isBallDead(8)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(8)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(8, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
-+	if (table->isBallDead(9)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(9)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(9, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
 +	}
-+	if (table->isBallDead(10)) {
-+	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++	if (table->isBallDead(10)){
++	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	  table->activateBall(10, 19.5f, 0.0f, 30.0f);
 +	  //score->clearText();
 +	  break;
@@ -134,7 +134,7 @@
        }
 @@ -329,9 +440,8 @@
      }		
-     ElseOnSignal( m_sigReleaseLock ) {
+     else if(em_signal ==  m_sigReleaseLock ){
        score->setInfoText("multiball", INFO_TEXT_TIME);
 -      table->unLockBall(0);
 -      table->unLockBall(1);
@@ -212,103 +212,103 @@
      }
      balls++;
    }
-+  if (table->isBallActive(3)) {
++  if (table->isBallActive(3)){
 +    float x, y, z;
 +    table->getBall(3)->getTranslation(x, y, z);
-+    if (balls > 0) {
++    if (balls > 0){
 +      bx += x; 
 +      by = EM_MAX(by, y); 
 +      bz = EM_MAX(bz, z);
-+    } else {
++    }else{
 +      bx = x; by = y; bz = z;
 +    }
 +    balls++;
 +  }
-+  if (table->isBallActive(4)) {
++  if (table->isBallActive(4)){
 +    float x, y, z;
 +    table->getBall(4)->getTranslation(x, y, z);
-+    if (balls > 0) {
++    if (balls > 0){
 +      bx += x; 
 +      by = EM_MAX(by, y); 
 +      bz = EM_MAX(bz, z);
-+    } else {
++    }else{
 +      bx = x; by = y; bz = z;
 +    }
 +    balls++;
 +  }
-+  if (table->isBallActive(5)) {
++  if (table->isBallActive(5)){
 +    float x, y, z;
 +    table->getBall(5)->getTranslation(x, y, z);
-+    if (balls > 0) {
++    if (balls > 0){
 +      bx += x; 
 +      by = EM_MAX(by, y); 
 +      bz = EM_MAX(bz, z);
-+    } else {
++    }else{
 +      bx = x; by = y; bz = z;
 +    }
 +    balls++;
 +  }
-+  if (table->isBallActive(6)) {
++  if (table->isBallActive(6)){
 +    float x, y, z;
 +    table->getBall(6)->getTranslation(x, y, z);
-+    if (balls > 0) {
++    if (balls > 0){
 +      bx += x; 
 +      by = EM_MAX(by, y); 
 +      bz = EM_MAX(bz, z);
-+    } else {
++    }else{
 +      bx = x; by = y; bz = z;
 +    }
 +    balls++;
 +  }
-+  if (table->isBallActive(7)) {
++  if (table->isBallActive(7)){
 +    float x, y, z;
 +    table->getBall(7)->getTranslation(x, y, z);
-+    if (balls > 0) {
++    if (balls > 0){
 +      bx += x; 
 +      by = EM_MAX(by, y); 
 +      bz = EM_MAX(bz, z);
-+    } else {
++    }else{
 +      bx = x; by = y; bz = z;
 +    }
 +    balls++;
 +  }
-+  if (table->isBallActive(8)) {
++  if (table->isBallActive(8)){
 +    float x, y, z;
 +    table->getBall(8)->getTranslation(x, y, z);
-+    if (balls > 0) {
++    if (balls > 0){
 +      bx += x; 
 +      by = EM_MAX(by, y); 
 +      bz = EM_MAX(bz, z);
-+    } else {
++    }else{
 +      bx = x; by = y; bz = z;
 +    }
 +    balls++;
 +  }
-+  if (table->isBallActive(9)) {
++  if (table->isBallActive(9)){
 +    float x, y, z;
 +    table->getBall(9)->getTranslation(x, y, z);
-+    if (balls > 0) {
++    if (balls > 0){
 +      bx += x; 
 +      by = EM_MAX(by, y); 
 +      bz = EM_MAX(bz, z);
-+    } else {
++    }else{
 +      bx = x; by = y; bz = z;
 +    }
 +    balls++;
 +  }
-+  if (table->isBallActive(10)) {
++  if (table->isBallActive(10)){
 +    float x, y, z;
 +    table->getBall(10)->getTranslation(x, y, z);
-+    if (balls > 0) {
++    if (balls > 0){
 +      bx += x; 
 +      by = EM_MAX(by, y); 
 +      bz = EM_MAX(bz, z);
-+    } else {
++    }else{
 +      bx = x; by = y; bz = z;
 +    }
 +    balls++;
 +  }
-   if (balls > 0) {
+   if (balls > 0){
      bx /= balls;
    }
 --- pinball-0.3.1/src/BounceBehavior.cpp	2003-11-20 09:46:17.000000000 -0700
@@ -316,22 +316,22 @@
 @@ -166,6 +166,7 @@
      this->getParent()->addTranslation(m_vtxDir.x, m_vtxDir.y, m_vtxDir.z);
      
-     if (z > 39) {
+     if (z > 39){
 +      this->getParent()->setTranslation(-4*m_iBall, 0, 40);
        m_bAlive = false;
        Table::getInstance()->unActivateBall(m_iBall);
-       SendSignal( PBL_SIG_BALL_OFF, 0, this->getParent(), NULL );
+       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_OFF, 0, this->getParent(), NULL );
 --- pinball-0.3.1/src/Score.cpp	2003-11-20 09:46:17.000000000 -0700
 +++ pinball-0.3.1/src/Score.cpp	2004-07-17 22:30:48.000000000 -0700
 @@ -130,7 +130,7 @@
    char buffer[256];
    // Correct bug of ball = 4 at end of game - pnf // !rzr: hum? is it a bug?
    int nCurrentBall = Table::getInstance()->getCurrentBall() + 1;
--  if (nCurrentBall < 4) {
-+  if (nCurrentBall < MAX_BALL + 1) {
-     if (m_bExtraBall) {
+-  if (nCurrentBall < 4){
++  if (nCurrentBall < MAX_BALL + 1){
+     if (m_bExtraBall){
        sprintf(buffer, "SCORE %d BALL %d ExtraBall", m_iScore, nCurrentBall);
-     } else {
+     }else{
 --- pinball-0.3.1/data/professor/ModuleProfessor.cpp	2003-11-20 09:46:17.000000000 -0700
 +++ pinball-0.3.1/data/professor/ModuleProfessor.cpp	2004-07-22 16:58:05.000000000 -0700
 @@ -58,6 +58,62 @@
@@ -339,118 +339,118 @@
            break;
          }
 +      case 3 :
-+      	if (table->isBallDead(3)) {
-+	        SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++      	if (table->isBallDead(3)){
++	        SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +	        table->activateBall(3, 19.5f, 0.0f, 30.0f);
 +	        //score->clearText();
 +      	  break;
 +        }
 +      case 4 :
-+      	if (table->isBallDead(4)) {
-+	        SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++      	if (table->isBallDead(4)){
++	        SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +      	  table->activateBall(4, 19.5f, 0.0f, 30.0f);
 +	        //score->clearText();
 +      	  break;
 +        }
 +      case 5 :
-+      	if (table->isBallDead(5)) {
-+      	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++      	if (table->isBallDead(5)){
++      	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +      	  table->activateBall(5, 19.5f, 0.0f, 30.0f);
 +      	  //score->clearText();
 +      	  break;
 +     	  }
 +            case 6 :
-+      	if (table->isBallDead(6)) {
-+      	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++      	if (table->isBallDead(6)){
++      	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +      	  table->activateBall(6, 19.5f, 0.0f, 30.0f);
 +      	  //score->clearText();
 +      	  break;
 +     	  }
 +      case 7 :
-+      	if (table->isBallDead(7)) {
-+      	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++      	if (table->isBallDead(7)){
++      	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +      	  table->activateBall(7, 19.5f, 0.0f, 30.0f);
 +      	  //score->clearText();
 +      	  break;
 +        }
 +      case 8 :
-+      	if (table->isBallDead(8)) {
-+      	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++      	if (table->isBallDead(8)){
++      	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +      	  table->activateBall(8, 19.5f, 0.0f, 30.0f);
 +      	  //score->clearText();
 +      	  break;
 +        }
 +      case 9 :
-+      	if (table->isBallDead(9)) {
-+      	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++      	if (table->isBallDead(9)){
++      	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +      	  table->activateBall(9, 19.5f, 0.0f, 30.0f);
 +      	  //score->clearText();
 +      	  break;
 +        }
 +            case 10 :
-+      	if (table->isBallDead(10)) {
-+      	  SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++      	if (table->isBallDead(10)){
++      	  SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 +      	  table->activateBall(10, 19.5f, 0.0f, 30.0f);
 +      	  //score->clearText();
 +      	  break;
 +        }
-         if (table->isBallDead(0)) {
-           SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
+         if (table->isBallDead(0)){
+           SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
            table->activateBall(0, 19.5f, 0.0f, 30.0f);   
 @@ -70,6 +126,60 @@
            //score->clearText();
            break;
          }
-+        if (table->isBallDead(2)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++        if (table->isBallDead(2)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(2, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;
 +        } 
-+ 	     if (table->isBallDead(3)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++ 	     if (table->isBallDead(3)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(3, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;
 + 	     }
-+ 	     if (table->isBallDead(4)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++ 	     if (table->isBallDead(4)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(4, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;
 + 	     }
-+ 	     if (table->isBallDead(5)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++ 	     if (table->isBallDead(5)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(5, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;
 + 	     }
-+ 	     if (table->isBallDead(6)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++ 	     if (table->isBallDead(6)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(6, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;
 + 	     }
-+ 	     if (table->isBallDead(7)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++ 	     if (table->isBallDead(7)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(7, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;
 + 	     }
-+ 	     if (table->isBallDead(8)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++ 	     if (table->isBallDead(8)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(8, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;
 + 	     }
-+ 	     if (table->isBallDead(9)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++ 	     if (table->isBallDead(9)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(9, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;
 + 	     }
-+ 	     if (table->isBallDead(10)) {
-+ 	       SendSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
++ 	     if (table->isBallDead(10)){
++ 	       SignalSender::getInstance()->addSignal( PBL_SIG_BALL_ON, 0, this->getParent(), NULL );
 + 	       table->activateBall(10, 19.5f, 0.0f, 30.0f);
 + 	       //score->clearText();
 + 	       break;

@@ -7,16 +7,16 @@
 
 #include "Private.h"
 #include "Engine.h"
-#include "Camera.h"
-#include "BigSphere.h"
-#include "KeyRotBehavior.h"
+#include "Camera.hpp"
+#include "BigSphere.hpp"
+#include "KeyRotBehavior.hpp"
 #include "Keyboard.h"
-#include "Light.h"
+#include "Light.hpp"
 #include "Polygon.h"
 #include "Shape3D.h"
 
 /** Main */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]){
 	cerr << "Simple emilia test." << endl;
 
 	// Create the engine.
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
 	KeyRotBehavior* keyRBeh = new KeyRotBehavior();
 	groupLightR1->setBehavior(keyRBeh);
 		
-	while (!Keyboard::isKeyDown(SDLK_ESCAPE)) {
+	while (!Keyboard::isKeyDown(SDLK_ESCAPE)){
 		engine->tick();
 		engine->render();
 		engine->swap();
@@ -64,6 +64,4 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-#if EM_USE_ALLEGRO
-END_OF_MAIN();
-#endif
+
