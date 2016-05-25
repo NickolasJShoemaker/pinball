@@ -100,3 +100,6 @@ conf*/
 
 debian/*.substvars
 debian/*-snapshot/
+
+*.sublime-workspace
+bin/
