@@ -12,21 +12,23 @@
 #include "Private.h"
 #include "TextureUtil.h"
 #include "Config.h"
+
 #include <iostream>
 
-#include <SDL/SDL_opengl.h> //should fix GL portability ; instead of <OpenGL/gl.h>
 // TODO remove glu
 #if EM_DEBUG
   #include <GL/glu.h>
 #endif
 
 #include <SDL2/SDL.h>
-#include <SDL_image.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_joystick.h>
+#include <SDL2/SDL_opengl.h>
 
 extern "C" {
-  struct_image* loadP(const char * filename);
+  struct_image* loadP(const char* filename);
 
-  struct_image* loadP(const char * filename){
+  struct_image* loadP(const char* filename){
     SDL_Surface* surface = IMG_Load(filename);
     if (surface == NULL){
       cerr << "::loadP could not load: " << filename << endl;
@@ -58,11 +60,6 @@ TextureUtil::TextureUtil(){
   m_colClear.g = 0.0f;
   m_colClear.b = 0.0f;
   m_colClear.a = 0.0f;
-}
-
-TextureUtil::~TextureUtil(){
-  //freeTextures(); // TODO: check mem leaks here //!rzr
-  //EM_COUT("TextureUtil::~TextureUtil",0);
 }
 
 TextureUtil* TextureUtil::getInstance(){
@@ -133,40 +130,46 @@ void TextureUtil::initGrx(){
     if (njoystick != 0){
       cerr << "The names of the joysticks are:" << endl;
       for(int a=0; a<njoystick; a++ ){
-        cerr << "  " << SDL_JoystickName(a) << endl;
+        cerr << "  " << SDL_JoystickNameForIndex(a) << endl;
       }
-      cerr << "Using " << SDL_JoystickName(0) << endl << endl;
+      cerr << "Using " << SDL_JoystickNameForIndex(0) << endl << endl;
       SDL_JoystickOpen(0);
       SDL_JoystickEventState(SDL_ENABLE);
     }
   }
 
   // See if we should detect the display depth
-  if( SDL_GetVideoInfo()->vfmt->BitsPerPixel <= 8 ){
-    SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 2 );
-    SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 3 );
-    SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 3 );
-  }else if( SDL_GetVideoInfo()->vfmt->BitsPerPixel <= 16 ){
-    SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 5 );
-    SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 5 );
-    SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 5 );
-  }else{
+  //if( SDL_GetVideoInfo()->vfmt->BitsPerPixel <= 8 ){
+  //  SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 2 );
+  //  SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 3 );
+  //  SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 3 );
+  //}else if( SDL_GetVideoInfo()->vfmt->BitsPerPixel <= 16 ){
+  //  SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 5 );
+  //  SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 5 );
+  //  SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 5 );
+  //}else{
     SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
     SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
     SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
-  }
+  //}
 
   SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, 16 );
   SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 
   /* Initialize the display */
-  SDL_Surface* screen = SDL_SetVideoMode(config->getWidth(), config->getHeight(), config->getBpp(), SDL_OPENGL
-                     | (config->useFullScreen() ? SDL_FULLSCREEN : 0));
+  // SDL_Surface* screen = SDL_SetVideoMode(config->getWidth(), config->getHeight(), config->getBpp(), SDL_OPENGL
+  //                    | (config->useFullScreen() ? SDL_FULLSCREEN : 0));
 
-  //    if (config->useFullScreen()){
+  // //    if (config->useFullScreen()){
+  // SDL_ShowCursor(SDL_DISABLE);
+  // //    }
+  // SDL_WM_SetCaption("Emilia Pinball", NULL);
+
+  SDL_Window* screen = SDL_CreateWindow("Emilia Pinball", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, config->getWidth(), config->getHeight(), SDL_WINDOW_OPENGL
+                     | (config->useFullScreen() ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0));
+
   SDL_ShowCursor(SDL_DISABLE);
-  //    }
-  SDL_WM_SetCaption("Emilia Pinball", NULL);
+  SDL_GL_MakeCurrent(screen, SDL_GL_CreateContext(screen));
 
   if(screen == NULL){
     cerr << "Couldn't set video mode: " << SDL_GetError() << endl;

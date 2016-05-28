@@ -191,10 +191,10 @@ using namespace std;
 #endif
 #else // Absolute default path, In case they're not defined
 #ifndef EM_DATADIR
-#define EM_DATADIR "/pinball/data" 
+#define EM_DATADIR "./data"
 #endif
 #ifndef EM_LIBDIR
-#define EM_LIBDIR "/pinball/lib"  
+#define EM_LIBDIR "./lib"  
 #endif
 #endif
 #ifndef EM_HIGHSCORE_DIR

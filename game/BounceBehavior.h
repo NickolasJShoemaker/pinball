@@ -43,16 +43,7 @@ constexpr float BORDER2 = (SPEED_FCT*0.02f);
 constexpr int ARM_TABLE_SIZE = 8; // do not use less than 3
 constexpr float ARM_WIDTH = 6.1f;
 
-// these values are pure guesses
-Vertex3D g_vtxArmTable[] = { 
-    {0.07f, 0.0f, -0.07f},
-    {0.09f, 0.0f, -0.18},
-    {0.1f, 0.0f, -0.33},
-    {0.07f, 0.0f, -0.45f},
-    {0.0f, 0.0f, -0.5f},
-    {-0.11f, 0.0f, -0.5f},
-    {-0.15f, 0.0f, -0.3f},
-    {-0.14f, 0.0f, -0.14f} };
+extern Vertex3D g_vtxArmTable[];
 
 /** A behavior for the pinball demo. */
 class BounceBehavior : public Behavior {

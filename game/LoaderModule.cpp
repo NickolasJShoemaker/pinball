@@ -23,16 +23,19 @@ using namespace std;
 
 #include "Behavior.h"
 //-----------------------------------------------------------------------------
-#ifndef RZR_LIBSTATIC
-  #include <ltdl.h>
-#else
-  #define lt_dlhandle void*
-  #define lt_dlinit() 
-  #define lt_dlexit()
-  #define lt_dlerror()
-  #define lt_dlopen(a)
-  #define lt_dlsym(a,b)
-#endif //!-rzr
+
+#include <ltdl.h>
+
+//#ifndef RZR_LIBSTATIC
+//  #include <ltdl.h>
+//#else
+//  #define lt_dlhandle void*
+//  #define lt_dlinit() 
+//  #define lt_dlexit()
+//  #define lt_dlerror()
+//  #define lt_dlopen(a)
+//  #define lt_dlsym(a,b)
+//#endif //!-rzr
 
 #define new_object_fct new_object_fct_Tux
 #include "../tables/tux/ModuleTux.cpp"

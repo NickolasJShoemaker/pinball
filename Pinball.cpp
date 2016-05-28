@@ -40,7 +40,7 @@
 #include "Light.hpp"
 #include "BigSphere.hpp"
 #include "Cylinder.hpp"
-#include "BounceBehavior.hpp"
+#include "BounceBehavior.h"
 #include "KeyBehavior.hpp"
 #include "Grid.hpp"
 #include "KeyRotBehavior.hpp"
@@ -57,14 +57,9 @@
 #include "BallGroup.hpp"
 #include "Table.h"
 
+#include "CreateMenu.hpp"
+
 #include <SDL2/SDL.h>
-
-constexpr float AMBIENT = 0.05f;
-
-void get_config(void);
-
-float g_RatioArray[] = { 1./2. , 1./1.  , 5./4. , 4./3. , 3./2. , 16/10. , 16./9. , 9./5, 2./1. };
-int g_WidthArray[] = { 320, 400, 512, 640, 800 , 864, 1024, 1280 , 1680 , 1920};
 
 /*
 * Main
@@ -80,7 +75,7 @@ int main(int argc, char *argv[]){
     float temp = Config::getInstance()->getBrightness();
     if(temp < 0.35f){
       direct = 0.3f;
-    }else if(temp >= 0.35f && <= 0.75f){
+    }else if(temp >= 0.35f && temp <= 0.75f){
       direct = temp - 0.5f;
     }else{
       direct = 0.8f;

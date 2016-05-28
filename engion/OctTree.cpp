@@ -36,9 +36,6 @@ OctTree::OctTree(int depth, float size, float x, float y, float z){
 	this->split(depth-1);
 }
 
-OctTree::~OctTree(){
-}
-
 void OctTree::split(int depth){
 	if (depth < 1) return;
 	EM_COUT("OctTree::split() "<< depth << endl, 0);

@@ -8,6 +8,7 @@
 
 #include "Private.h"
 #include "BumperBehavior.h"
+
 #include "Group.h"
 #include "Pinball.h"
 #include "Polygon.h"
@@ -16,6 +17,17 @@
 #include "Loader.h"
 
 #include "SignalSender.h"
+
+// these values are pure guesses
+Vertex3D g_vtxArmTable[] = { 
+    {0.07f, 0.0f, -0.07f},
+    {0.09f, 0.0f, -0.18},
+    {0.1f, 0.0f, -0.33},
+    {0.07f, 0.0f, -0.45f},
+    {0.0f, 0.0f, -0.5f},
+    {-0.11f, 0.0f, -0.5f},
+    {-0.15f, 0.0f, -0.3f},
+    {-0.14f, 0.0f, -0.14f} };
 
 BumperBehavior::BumperBehavior() : Behavior(){
   m_fPower = 0.5f;

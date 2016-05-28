@@ -5,6 +5,12 @@
  * Menus
  ***************************************************************************/
 
+constexpr float AMBIENT = 0.05f;
+void get_config(void);
+
+float g_RatioArray[] = { 1./2. , 1./1.  , 5./4. , 4./3. , 3./2. , 16/10. , 16./9. , 9./5, 2./1. };
+int g_WidthArray[] = { 320, 400, 512, 640, 800 , 864, 1024, 1280 , 1680 , 1920};
+
 MenuChoose* menusnd     = NULL;
 MenuChoose* menumusic   = NULL;
 MenuChoose* menubright  = NULL;
@@ -110,11 +116,11 @@ class MyMenuApply : public MenuFct {
 public:
   MyMenuApply(const char * name, int (*fct)(void), Engine *e) : MenuFct(name, fct, e){};
 protected:
-  int perform (){
+  int perform(){
     Config* config = Config::getInstance();
     TextureUtil* textureutil = TextureUtil::getInstance();
     // sound
-    int temp = memusnd->getCurrent();
+    int temp = menusnd->getCurrent();
     if(temp >= 0 && temp <= 8){
       config->setSound(temp);
     }
@@ -124,18 +130,16 @@ protected:
     }
     SoundUtil::getInstance()->applyConfigVolume();
     // fullscreen
-    if (menuscreen->getCurrent() == 0){
-      if (config->useFullScreen() == false){
-#if EM_USE_SDL
-        SDL_WM_ToggleFullScreen(SDL_GetVideoSurface());
-#endif
+    if(menuscreen->getCurrent() == 0){
+      if(config->useFullScreen() == false){
+        //SDL_WM_ToggleFullScreen(SDL_GetVideoSurface());
+        SDL_SetWindowFullscreen(SDL_GL_GetCurrentWindow(), 0);
       }
       config->setFullScreen(true);
     }else{
-      if (config->useFullScreen() == true){
-#if EM_USE_SDL
-        SDL_WM_ToggleFullScreen(SDL_GetVideoSurface());
-#endif
+      if(config->useFullScreen() == true){
+        //SDL_WM_ToggleFullScreen(SDL_GetVideoSurface());
+        SDL_SetWindowFullscreen(SDL_GL_GetCurrentWindow(), SDL_WINDOW_FULLSCREEN);
       }
       config->setFullScreen(false);
     }
@@ -153,48 +157,47 @@ protected:
       // scren ratio
       float ratio=4./3.;
       {
-  int index = menuratio->getCurrent();
-  if ( index < ( sizeof(g_RatioArray) / sizeof( g_RatioArray[0]) ) ){
-    ratio = g_RatioArray[ index ];
-  }
-  config->setRatio( ratio );
+        int index = menuratio->getCurrent();
+        if( index < ( sizeof(g_RatioArray) / sizeof( g_RatioArray[0]) ) ){
+          ratio = g_RatioArray[ index ];
+        }
+        config->setRatio( ratio );
       }
      
       // screen size
       int w=640, h=480;
       {
       
-  int index = menusize->getCurrent();
-  if ( index < ( sizeof(g_WidthArray) / sizeof(g_WidthArray[0]) ) ){
-    w = g_WidthArray[ index ];
-  }
-  h=w/ratio;
+        int index = menusize->getCurrent();
+        if( index < ( sizeof(g_WidthArray) / sizeof(g_WidthArray[0]) ) ){
+          w = g_WidthArray[ index ];
+        }
+        h=w/ratio;
       }
       
-      if (  (config->getWidth() != w)  || (config->getHeight() != h) ){
-  SDL_SetVideoMode(w, h, config->getBpp(), SDL_OPENGL | (config->useFullScreen() ? SDL_FULLSCREEN : 0));
-  TextureUtil::getInstance()->resizeView(w, h);
-  
-#ifdef WIN32 //~rzr:{  //cout<<("Workround bug (for WIN32) + macosx etc");
-  //TextureUtil::getInstance()->reloadTextures(); //TODO: fix the w32 bug
-  TextureUtil::getInstance()->freeTextures(); // "hide" the w32 bug
-  string filename =
-    Config::getInstance()->getDataDir() + string("/font_34.png");
-  EmFont::getInstance()->loadFont(filename.c_str());
-  //cout<<"may not be  driver bug cos it also happends under wine"<<endl;
-  // unload level and textures //TODO: Reload Splash Screen
-  Table::getInstance()->clear(Engine::getCurrentEngine() );
-#endif //~rzr:} //cout<<"@w32 / resizing unreference textures (mipmaping?)"<<endl;
+      if((config->getWidth() != w)  || (config->getHeight() != h)){
+        //SDL_SetVideoMode(w, h, config->getBpp(), SDL_OPENGL | (config->useFullScreen() ? SDL_FULLSCREEN : 0));
+        TextureUtil::getInstance()->resizeView(w, h);
+
+        #ifdef WIN32 //~rzr:{  //cout<<("Workround bug (for WIN32) + macosx etc");
+        //TextureUtil::getInstance()->reloadTextures(); //TODO: fix the w32 bug
+        TextureUtil::getInstance()->freeTextures(); // "hide" the w32 bug
+        string filename = Config::getInstance()->getDataDir() + string("/font_34.png");
+        EmFont::getInstance()->loadFont(filename.c_str());
+        //cout<<"may not be  driver bug cos it also happends under wine"<<endl;
+        // unload level and textures //TODO: Reload Splash Screen
+        Table::getInstance()->clear(Engine::getCurrentEngine() );
+        #endif //~rzr:} //cout<<"@w32 / resizing unreference textures (mipmaping?)"<<endl;
       }
 
       config->setSize(w, h);
     }
 
     switch (menuview->getCurrent()){
-    case 1: config->setView(1); break;
-    case 2: config->setView(2); break;
-    case 3: config->setView(3); break;
-    default: config->setView(0);
+      case 1: config->setView(1); break;
+      case 2: config->setView(2); break;
+      case 3: config->setView(3); break;
+      default: config->setView(0);
     }
     // texture filter
     if (menufilter->getCurrent() == 0){
@@ -333,10 +336,10 @@ void get_config(void){
 
   // view mode
   switch(Config::getInstance()->getView()){
-  case 1: menuview->setCurrent(1); break;
-  case 2: menuview->setCurrent(2); break;
-  case 3: menuview->setCurrent(3); break;
-  default: menuview->setCurrent(0);
+    case 1: menuview->setCurrent(1); break;
+    case 2: menuview->setCurrent(2); break;
+    case 3: menuview->setCurrent(3); break;
+    default: menuview->setCurrent(0);
   }
   // texture filter
   if (Config::getInstance()->getGLFilter() == EM_LINEAR){

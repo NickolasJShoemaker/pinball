@@ -19,7 +19,7 @@
 #endif
 
 #include <SDL2/SDL.h>
-#include <SDL/SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 
 #define EmSample Mix_Chunk
 #define EmMusic Mix_Music

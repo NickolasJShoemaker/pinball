@@ -23,9 +23,6 @@ Node::Node(){
   m_vtxS.z = 1;
 }
 
-Node::~Node(){
-}
-
 void Node::setTransform(float tx, float ty, float tz, float rx, float ry, float rz){
   m_vtxT.x = tx;
   m_vtxT.y = ty;

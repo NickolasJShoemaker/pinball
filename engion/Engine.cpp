@@ -223,7 +223,10 @@ void Engine::swap(){
   EM_COUT("Engine::swap()", 0);
   g_iLoops++;
   // Draw to screen.
-  SDL_GL_SwapBuffers();
+  //SDL_GL_SwapBuffers();
+
+  SDL_GL_SwapWindow(SDL_GL_GetCurrentWindow());
+
   EM_GLERROR(" In Engine::swap ");
   StopProfile();
 }

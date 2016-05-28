@@ -6,8 +6,8 @@
     email                : 
  ***************************************************************************/
 
-#ifndef BUMPERBEHAVIOR_E
-#define BUMPERBEHAVIOR_E
+#ifndef BUMPERBEHAVIOR_H
+#define BUMPERBEHAVIOR_H
 
 #include "Behavior.h"
 #include "EMath.h"
